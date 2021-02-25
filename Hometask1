@@ -1,0 +1,348 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NumOfTypes 5
+#define type1 10
+#define type2 17
+#define type3 2
+#define type4 0
+#define type5 1
+#define exc1 11
+#define exc2 12
+#define exc3 13
+#define exc4 14
+#define wordendhelp 100
+
+int unique(const int *mas, int a, int k);
+
+int main(int argc, char *argv[argc])
+{
+    int count[NumOfTypes];
+    for (int i = type4; i < NumOfTypes; i++) {
+        count[i] = type4;
+    }
+    int *indices = malloc(sizeof(int) * (argc));
+
+    for (int i = type4; i < argc; i++) {
+        int flag = type4;
+        char *end;
+        strtol(argv[i], &end, type1);
+
+        if ((end[type4]) != (type4)) {
+            strtol(argv[i], &end, type2);
+
+            if ((end[type4]) != (type4)) {
+                strtod(argv[i], &end);
+                if (end[type4] != type4) {
+
+                    while (end[type4] != type4) {
+                        if ((strtol(argv[i], &end, type1) == type4) &&
+                            (end[type4] != ' ') && (end[type4] != type4)) {
+
+                            flag++;
+                        }
+
+                        argv[i]++;
+                    }
+                    if (flag == type4) {
+                        count[3]++;
+                        indices[i] = type4;
+                    } else {
+                        count[4]++;
+                        indices[i] = type5;
+                    }
+                } else {
+                    count[type3]++;
+                    indices[i] = type3;
+                }
+            } else {
+                count[type5]++;
+                indices[i] = type2;
+            }
+        } else {
+            count[type4]++;
+            indices[i] = type1;
+        }
+    }
+
+    // sort order
+
+    int order[type3][NumOfTypes];
+    for (int i = type4; i < NumOfTypes; i++) {
+        order[type4][i] = -type5;
+    }
+    int start = type4;
+    int err = type4;
+    for (int i = type4; i < NumOfTypes; i++) {
+        if (err != type4) {
+            break;
+        }
+        for (int j = start; j < argc; j++) {
+            if (unique(indices, indices[j], j) == type4) {
+                order[type4][i] = indices[j];
+                j++;
+                if (argc == j) {
+                    err++;
+                    break;
+                }
+                while (unique(indices, indices[j], j) != type4) {
+                    j++;
+                    if (j == argc) {
+                        break;
+                    }
+                }
+                start = j;
+                break;
+            }
+        }
+    }
+
+    for (int i = type4; i < NumOfTypes; i++) {
+        if (order[type4][i] == type1) {
+            order[type5][i] = count[type4];
+        }
+        if (order[type4][i] == type2) {
+            order[type5][i] = count[type5];
+        }
+        if (order[type4][i] == type3) {
+            order[type5][i] = count[type3];
+        }
+        if (order[type4][i] == type4) {
+            order[type5][i] = count[3];
+        }
+        if (order[type4][i] == type5) {
+            order[type5][i] = count[4];
+        }
+        if (order[type4][i] == -type5) {
+            order[type5][i] = type4;
+        }
+    }
+    int out[type3][NumOfTypes];
+    int max = -type5;
+    int num = type4;
+    for (int i = type4; i < NumOfTypes; i++) {
+        for (int j = type4; j < NumOfTypes; j++) {
+            if (order[type5][j] > max) {
+                max = order[type5][j];
+                num = j;
+            }
+        }
+        out[type5][i] = max;
+        out[type4][i] = order[type4][num];
+        order[type5][num] = -type3;
+        max = -type5;
+    }
+    //финальный вывод
+    for (int i = type4; i < NumOfTypes; i++) {
+        if ((out[type5][i] != type4)) {
+            if (out[type4][i] == type1) // out type1 final
+            {
+                if ((out[type5][i]) % wordendhelp == exc1 ||
+                    (out[type5][i]) % wordendhelp == exc2 ||
+                    (out[type5][i]) % wordendhelp == exc3 ||
+                    (out[type5][i]) % wordendhelp == exc4) // out type1 final
+                {
+
+                    printf("%d ", out[type5][i]);
+                    printf("десятичных чисел:");
+                    for (int j = type4; j < argc; j++) {
+                        if ((indices[j]) == (type1)) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                } else {
+                    printf("%d ", out[type5][i]);
+                    if (out[type5][i] % type1 == type5) {
+                        printf("десятичное число:");
+                    }
+                    if ((out[type5][i] % type1 >= type3) &&
+                        (out[type5][i] % type1 <= 4)) {
+                        printf("десятичных числа:");
+                    }
+                    if ((out[type5][i] % type1 >= NumOfTypes) ||
+                        (out[type5][i] % type1 < type5)) {
+                        printf("десятичных чисел:");
+                    }
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type1) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                } // type1
+            }
+            if (out[type4][i] == type2) // out type2 final
+            {
+                if ((out[type5][i]) % wordendhelp == exc1 ||
+                    (out[type5][i]) % wordendhelp == exc2 ||
+                    (out[type5][i]) % wordendhelp == exc3 ||
+                    (out[type5][i]) % wordendhelp == exc4) {
+                    // out type2 final
+
+                    printf("%d ", out[type5][i]);
+                    printf("чисел по основанию 17:");
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type2) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+
+                else {
+                    printf("%d ", out[type5][i]);
+                    if ((out[type5][i] % type1) == (type5)) {
+                        printf("число по основанию 17:");
+                    }
+                    if ((out[type5][i] % type1 >= type3) &&
+                        ((out[type5][i] % type1) <= (4))) {
+                        printf("числа по основанию 17:");
+                    }
+                    if ((out[type5][i] % type1 >= NumOfTypes) ||
+                        (out[type5][i] % type1 < type5)) {
+                        printf("чисел по основанию 17:");
+                    }
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type2) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+            } // type2
+            if (out[type4][i] == type3) // out type3 final
+            {
+                if ((out[type5][i]) % wordendhelp == exc1 ||
+                    (out[type5][i]) % wordendhelp == exc2 ||
+                    (out[type5][i]) % wordendhelp == exc3 ||
+                    (out[type5][i]) % wordendhelp == exc4) {
+                    // out type3 final
+
+                    printf("%d ", out[type5][i]);
+                    printf("чисел с плавающей точкой:");
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type3) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+
+                else {
+                    printf("%d ", out[type5][i]);
+                    if (out[type5][i] % type1 == type5) {
+                        printf("число с плавающей точкой:");
+                    }
+                    if ((out[type5][i] % type1 >= type3) &&
+                        (out[type5][i] % type1 <= 4)) {
+                        printf("числа с плавающей точкой:");
+                    }
+
+                    if ((out[type5][i] % type1 >= NumOfTypes) ||
+                        (out[type5][i] % type1 < type5)) {
+                        printf("чисел с плавающей точкой:");
+                    }
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type3) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+            } // type3
+            if (out[type4][i] == type4) // out strdec final
+            {
+                if ((out[type5][i]) % wordendhelp == exc1 ||
+                    (out[type5][i]) % wordendhelp == exc2 ||
+                    (out[type5][i]) % wordendhelp == exc3 ||
+                    (out[type5][i]) % wordendhelp == exc4) {
+                    // out strdec final
+
+                    printf("%d ", out[type5][i]);
+                    printf("списков десятичных чисел, разделённых пробелами:");
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type4) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                } else {
+                    printf("%d ", out[type5][i]);
+                    if (out[type5][i] % type1 == type5) {
+                        printf(
+                            "список десятичных чисел, разделённых пробелами:");
+                    }
+                    if ((out[type5][i] % type1 >= type3) &&
+                        (out[type5][i] % type1 <= 4)) {
+                        printf(
+                            "списка десятичных чисел, разделённых пробелами:");
+                    }
+                    if ((out[type5][i] % type1 >= NumOfTypes) ||
+                        (out[type5][i] % type1 < type5)) {
+                        printf(
+                            "списков десятичных чисел, разделённых пробелами:");
+                    }
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type4) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+            }
+            if (out[type4][i] == type5) // out junk final
+            {
+                if ((out[type5][i]) % wordendhelp == exc1 ||
+                    (out[type5][i]) % wordendhelp == exc2 ||
+                    (out[type5][i]) % wordendhelp == exc3 ||
+                    (out[type5][i]) % wordendhelp == exc4) {
+                    // out junk final
+
+                    printf("%d ", out[type5][i]);
+                    printf("строк:");
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type5) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                } else {
+                    printf("%d ", out[type5][i]);
+                    if (out[type5][i] % type1 == type5) {
+                        printf("строка:");
+                    }
+                    if ((out[type5][i] % type1 >= type3) &&
+                        (out[type5][i] % type1 <= 4)) {
+                        printf("строки:");
+                    }
+                    if ((out[type5][i] % type1 >= NumOfTypes) ||
+                        (out[type5][i] % type1 < type5)) {
+                        printf("строк:");
+                    }
+                    for (int j = type4; j < argc; j++) {
+                        if (indices[j] == type5) {
+                            printf(" %d", j);
+                        }
+                    }
+                    printf("\n");
+                }
+            }
+        }
+    }
+
+    //В массиве ордер лежит порядок появления разных типов данных
+    free(indices);
+    return type4;
+}
+
+int unique(const int *mas, int a, int k)
+{
+    int flag = type4;
+    for (int i = type4; i < k; i++) {
+        if (a == mas[i]) {
+            flag++;
+        }
+    }
+    return flag;
+}
